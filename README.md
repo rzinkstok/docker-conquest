@@ -1,6 +1,7 @@
 # Conquest DICOM docker image
 
-This is a simple dockerized Conquest DICOM server. No web interface, just the basic dgate executable.
+This is a simple dockerized version of the Conquest DICOM server (see https://github.com/marcelvanherk/Conquest-DICOM-Server). 
+This docker image contains just the basic dgate executable without the web interface.
 Configuration can be done by editing the `acrnema.map` and the `dicom.ini` files. After any edit of these
 files, a new docker image should be built:
 
