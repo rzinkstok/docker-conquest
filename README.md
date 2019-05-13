@@ -19,3 +19,8 @@ docker-compose up -d
 
 Data and the database are stored on volumes: the `compose/data` and `compose/dbase` are mounted in the container.
 
+## To do
+
+- Parametrize server parameters like AETitle and port number
+- Move to serious database, using a separate MySQL or PostgreSQL container
+- ...
