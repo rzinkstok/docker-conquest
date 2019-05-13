@@ -1,0 +1,11 @@
+version: '3'
+services:
+  conquestdicom:
+    image: "rzinkstok/conquest"
+    container_name: conquest
+    ports:
+      - "4567:4567"
+    volumes:
+      - ./data:/conquest/data
+      - ./dbase:/conquest/dbase
+
