@@ -3,6 +3,7 @@ services:
   conquestdicom:
     image: "rzinkstok/conquest"
     container_name: conquest
+    network_mode: host
     ports:
       - "5678:5678"
     volumes:
