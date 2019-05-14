@@ -1,10 +1,12 @@
 FROM ubuntu:18.04
 
 RUN apt-get update
-RUN apt-get install -y build-essential g++ wget zip unzip sudo dos2unix
+RUN apt-get install -y build-essential g++ wget zip unzip sudo dos2unix vim
 
 RUN mkdir -p /conquest/data
 RUN mkdir -p /conquest/dbase
+RUN mkdir -p /conquest/config
+RUN mkdir -p /conquest/logs
 
 RUN wget http://ingenium.home.xs4all.nl/dicomserver/dicomserver1419d.zip
 RUN mkdir /temp
@@ -16,16 +18,17 @@ RUN chmod 777 /temp/maklinux
 RUN cd /temp && printf "3\n" | ./maklinux
 
 RUN cp /temp/dgate /conquest/.
-RUN cp /temp/dgate.dic /conquest/.
-RUN cp /temp/dicom.sql /conquest/.
+#RUN cp /temp/dgate.dic /conquest/config/.
+#RUN cp /temp/dicom.sql /conquest/config/.
+#COPY acrnema.map /conquest/config/.
+#COPY dicom.ini /conquest/config/.
 
-RUN touch /conquest/serverstatus.log
-RUN touch /conquest/PacsTrouble.log
-COPY acrnema.map /conquest/
-COPY dicom.ini /conquest/
+
+#RUN touch /conquest/logs/serverstatus.log
+#RUN touch /conquest/logs/PacsTrouble.log
+
 COPY startConquest.sh /conquest/
+RUN dos2unix /conquest/startConquest.sh
 RUN chmod 777 /conquest/startConquest.sh
-
-RUN touch /conquest/serverstatus.log
 
 CMD ["/conquest/startConquest.sh"]

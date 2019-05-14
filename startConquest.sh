@@ -2,11 +2,12 @@
 cd /conquest
 
 #echo Starting Conquest
-if [ "$(ls -A dbase)" ]; then
+FILE=/conquest/dbase/conquest.db3
+if test -f "$FILE"; then
     echo "Database is already initialized"
 else
     echo "Initializing database"
-    ./dgate -v -r >> serverstatus.log
+    ./dgate -v -w/conquest/config -r &>> /conquest/logs/serverstatus.log
 fi
-./dgate -v >> serverstatus.log
+./dgate -v -w/conquest/config &>> /conquest/logs/serverstatus.log
 
