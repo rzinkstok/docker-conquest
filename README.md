@@ -1,7 +1,7 @@
 # Conquest DICOM docker image
 
 This is a simple dockerized version of the Conquest DICOM server (see https://github.com/marcelvanherk/Conquest-DICOM-Server). 
-This docker image contains just the basic dgate executable without the web interface.
+This docker image contains just the basic `dgate` executable without the web interface.
 Building the docker image is simple:
 
 ```
@@ -32,6 +32,6 @@ to use the hostname alias (`host.docker.internal`) for DICOM nodes running on th
 
 
 ## To do
-- Check and (if needed) fix connection to DICOM nodes on another host
-- Look into a simple way of starting multiple instances 
+- Check and (if needed) fix connection to DICOM nodes on another host (docker networking might be an issue)
+- Look into a simple way of starting multiple instances with different AETitles, ports, logging and databases
 
