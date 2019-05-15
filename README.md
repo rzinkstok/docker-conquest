@@ -12,7 +12,7 @@ The service can be started using `docker-compose`:
 
 ```
 cd compose
-docker-compose up -d
+docker-compose up
 ```
 
 ## Mounted folders
