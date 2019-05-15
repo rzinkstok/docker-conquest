@@ -8,7 +8,7 @@ Building the docker image is simple:
 docker build -t rzinkstok/conquest .
 ```
 
-The service can be started using `docker-compose`::
+The service can be started using `docker-compose`:
 
 ```
 cd compose
