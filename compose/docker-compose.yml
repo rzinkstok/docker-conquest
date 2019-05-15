@@ -3,11 +3,15 @@ services:
   conquestdicom:
     image: "rzinkstok/conquest"
     container_name: conquest
-    network_mode: host
     ports:
       - "5678:5678"
     volumes:
-      - ./data:/conquest/data
-      - ./dbase:/conquest/dbase
-      - ./config:/conquest/config
-      - ./logs:/conquest/logs
+      - ./mount:/conquest/mount
+#  db:
+#    image: postgres
+#    restart: always
+#    environment:
+#      POSTGRES_DB: conquest
+#      POSTGRES_USER: conquest
+#      POSTGRES_PASSWORD: conquest
+    

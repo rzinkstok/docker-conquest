@@ -37,3 +37,18 @@ to use the hostname alias (`host.docker.internal`) for DICOM nodes running on th
 - Perhaps it is simpler to use Ansible, so you can parametrize server parameters like AETitle and port number. Or go to Kubernetes/Helm charts.
 - Move to serious database, using a separate MySQL or PostgreSQL container
 - ...
+
+### Needed per instance:
+- aetitle -> envvar
+- port -> envvar
+- acrnema.map -> single file for all?
+- data folder -> 
+- dbase -> add mysql container
+- logs -> volume
+- import/export converters
+- scripts -> volume
+- option for restarting service
+
+### Networking
+Default Docker networking only allows communications to the host (and other containers in the same compose setup).
+This can be problematic if the Conquest server needs to communicate with nodes on other machines.
