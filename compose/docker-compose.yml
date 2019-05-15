@@ -4,14 +4,29 @@ services:
     image: "rzinkstok/conquest"
     container_name: conquest
     ports:
-      - "5678:5678"
+      - "${PORT}:${PORT}"
+    environment:
+      - AETITLE
+      - PORT
     volumes:
       - ./mount:/conquest/mount
-#  db:
-#    image: postgres
-#    restart: always
-#    environment:
-#      POSTGRES_DB: conquest
-#      POSTGRES_USER: conquest
-#      POSTGRES_PASSWORD: conquest
+    depends_on:
+      - db
+  db:
+    image: postgres
+    container_name: conquest_db
+    restart: always
+    environment:
+      - POSTGRES_DB=conquest
+      - POSTGRES_USER=conquest
+      - POSTGRES_PASSWORD=conquest
+      - PGDATA=/conquest/dbase
+    ports:
+      - 5432:5432
+    volumes:
+      - dbdata:/conquest/dbase
+
+volumes:
+  dbdata:
     
+

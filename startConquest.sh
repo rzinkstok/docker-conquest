@@ -1,13 +1,18 @@
 #!/bin/bash
+DBFILE=/conquest/mount/dbase/conquest.db3
+INITEMPLATE=/conquest/mount/config/dicom.ini.j2
+INIFILE=/conquest/mount/config/dicom.ini
+
 cd /conquest
 
-#echo Starting Conquest
-FILE=/conquest/mount/dbase/conquest.db3
-if test -f "$FILE"; then
-    echo "Database is already initialized"
-else
-    echo "Initializing database"
-    ./dgate -v -w/conquest/mount/config -r &>> /conquest/mount/logs/serverstatus.log
-fi
-./dgate -v -w/conquest/mount/config &>> /conquest/mount/logs/serverstatus.log
+# Create dicom.ini
+cp $INITEMPLATE $INIFILE
+sed -i "s/{{ AETITLE }}/$AETITLE/g" $INIFILE
+sed -i "s/{{ PORT }}/$PORT/g" $INIFILE
+
+# Init database
+./dgate -v -w/conquest/mount/config -r
+
+# Start the server
+./dgate -v -w/conquest/mount/config
 
