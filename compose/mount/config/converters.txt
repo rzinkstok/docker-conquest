@@ -1,2 +1,3 @@
 ifequal "%m","MR"; destroy;
 ifequal "%m","CT"; nop Welcome CT slice for patient %i!;
+/conquest/mount/scripts/printPatientInfo.lua
