@@ -26,6 +26,28 @@ docker-compose up -d
 Configuration of the server is specified in the `compose/config/dicom.ini` file. This file is generated on the fly from the `compose/config/dicom.ini.j2` template,
 using some environment variables set in the `compose/.env` file. These are AETITLE and PORT: 
 in changing these, you should update their value in the `.env` file and restart the whole stack.
+
+### Import converters
+
+Import converters can be added to the `compose/config/converters.txt` file. Each line should contain a single
+import converter definition. These will be added to the `dicom.ini` configuration file at runtime. 
+For the syntax, see the Conquest manual (https://github.com/marcelvanherk/Conquest-DICOM-Server/blob/master/windowsmanual.pdf).
+Note that the `ImportConverterX = ` part of the import converter definition is already added by the runtime 
+script, so you only need to add the right hand side.
+
+For example, to create a DICOM node that rejects MR data and prints a welcome message for CT data, add the
+following to `compose/config/converters.txt`:
+
+```
+ifequal "%m","MR"; destroy;
+ifequal "%m","CT"; nop Welcome CT slice for patient %i!;
+```
+
+### Lua scripting
+
+The import converters can be used to call a Lua script by setting the Lua script path as import converter.
+
+### ACRNEMA.map
  
 For communication with other DICOM nodes, it is necessary to add them to the `compose/config/acrnema.map`. Remember
 to use the hostname alias (`host.docker.internal`) for DICOM nodes running on the host machine. 
